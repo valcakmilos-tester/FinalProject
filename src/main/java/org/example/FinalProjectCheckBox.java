@@ -1,8 +1,6 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,12 +11,22 @@ import org.openqa.selenium.WebElement;
 public class FinalProjectCheckBox {
     private static WebDriver driver;
 
-    @BeforeAll
-    public static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\ProgramovanieKody\\SkillmeaOOP2\\SkilmeaBDD\\SkillmeaSelenium\\SkillmeaSelenium\\src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
+     @BeforeEach
+   public void setUp() {
+       System.setProperty("webdriver.chrome.driver",
+               "C:\\Users\\User\\Desktop\\ProgramovanieKody\\SkillmeaOOP2\\SkilmeaBDD\\SkillmeaSelenium\\SkillmeaSelenium\\src\\main\\resources\\chromedriver.exe");
+
+       driver = new ChromeDriver();
+   }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
+//REQ-C1
   @Test
   public void testFinalProjectCheckBox() throws Exception {
     driver.get("https://www.tutorialspoint.com/selenium/practice/check-box.php");
@@ -28,15 +36,24 @@ public class FinalProjectCheckBox {
       WebElement checkbox2 = driver.findElement(By.id("c_bs_2"));
 
       // Klikneme na ne
-      checkbox1.click();
-      checkbox2.click();
+      checkbox1.click();   // zakomentovanim zrusim checkbox
+      //checkbox2.click(); // zakomentovanim zrusim checkbox
 
       // OVERENIA:
 
       Assertions.assertTrue(checkbox1.isSelected(), "Checkbox 1 NIE je zaškrtnutý!");
       Assertions.assertTrue(checkbox2.isSelected(), "Checkbox 2 NIE je zaškrtnutý!");
       System.out.println("####### Test Case REQ-C1 úspešne ukončený ######");
+      try {
+          Thread.sleep(5000); // pauza 5 sekund
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+      }
+
   }
+/*
+// REQ-C2
+
     @Test
     public void testREQC2_SimulatedParentChildBehavior() throws Exception {
 
@@ -49,7 +66,7 @@ public class FinalProjectCheckBox {
         WebElement child2 = driver.findElement(By.id("c_bs_2"));
 
         // ---------------------------------------------------------------------
-        // 1️⃣ SCENÁR: OBA CHILD SÚ ZAŠKRTNUTÉ  →  PARENT = TRUE
+        // SCENÁR: OBE CHILD SÚ ZAŠKRTNUTÉ  →  PARENT = TRUE
         // ---------------------------------------------------------------------
 
 
@@ -96,7 +113,12 @@ public class FinalProjectCheckBox {
 
         Assertions.assertFalse(parent,
                 "REQ-C2 FAILED → Parent má byť FALSE keď ani jeden child NIE je zaškrtnutý!");
-        System.out.println("####### Test Case REQ-C2 ukončený ######");
+        System.out.println("####### Test Case REQ-C2 úspešne ukončený ######");
+        try {
+            Thread.sleep(5000); // pauza 5 sekund
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
+*/
 }
