@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 
 
-public class FinalProjectCheckBox {
+public class REQ_C1_FinalProjectCheckBox {
     private static WebDriver driver;
 
     @BeforeAll
