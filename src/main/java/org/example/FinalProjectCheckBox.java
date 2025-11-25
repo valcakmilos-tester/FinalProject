@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+
 
 
 public class FinalProjectCheckBox {
@@ -20,6 +22,17 @@ public class FinalProjectCheckBox {
   @Test
   public void testFinalProjectCheckBox() throws Exception {
     driver.get("https://www.tutorialspoint.com/selenium/practice/check-box.php");
+      // Nájdeme oba checkboxy
+      WebElement checkbox1 = driver.findElement(By.id("c_bs_1"));
+      WebElement checkbox2 = driver.findElement(By.id("c_bs_2"));
+
+      // Klikneme na ne
+      checkbox1.click();
+      checkbox2.click();
+
+      // OVERENIA:
+      Assertions.assertTrue(checkbox1.isSelected(), "Checkbox 1 NIE je zaškrtnutý!");
+      Assertions.assertTrue(checkbox2.isSelected(), "Checkbox 2 NIE je zaškrtnutý!");
 
   }
 }
